@@ -1,0 +1,210 @@
+.myBlue {
+
+        background:#005aa0!important;
+}
+.myGreenHMC {
+        background:#8CB423!important;
+        border-color:#8CB423!important
+}
+.myFooterNav {
+        height: 30px!important;
+        /* padding: 0 0!important; */
+        border-top: 0px!important;
+}
+
+.mySocialMediaIcon {
+        color: #fff!important; 
+        font-size: x-large!important;  
+        text-align: center!important;
+}
+.mySlideShareIcon {
+        font-size: x-large!important;  
+}
+.li:hover {
+        color: #005aa0!important;     
+}
+ .mySocialMediaIcon:hover {
+        color: #27b4f8!important;
+  
+}
+.mySocialMediaIcon:focus {
+        width: 100%!important;
+    overflow: hidden!important
+}
+.mySocialMediaIcon:hover::after{
+        color: white!important;
+} 
+ /* a:hover{
+       color :red!important;
+} */
+.mytext{
+        color: #fff!important;
+    font-size: 20px!important; 
+    background:#005aa0!important;
+    font-family: Hermann-Bold, Arial, sans-serif!important;
+}
+.mytext:hover{
+        color: #27b4f8!important;
+        text-decoration: underline!important;    
+} 
+.mylabel {
+        font-family:  CorporateSBold,Arial,sans-serif!important;
+        font-size: 18px!important;   
+        color: black!important;
+}
+.myFooterBottom {
+        color: #fff!important;
+    font-size: 20px!important; 
+    background:#005aa0!important;
+    font-family: Hermann-Bold, Arial, sans-serif!important;
+}
+
+.myZeroPadding{
+        padding: 0 0!important;    
+}
+
+.myPadding {
+        padding-top: 21px!important;
+}
+
+.myZeroPaddingLR {
+       padding-right: 0px!important;
+       padding-left: 0px!important;
+} 
+.myZeroMarginLR {
+        margin-right: 0px!important;
+        margin-left: 0px!important;
+ }
+.myLeft{
+        /* position:absolute!important; */
+        text-align: left!important;
+}
+.myCenter {
+        text-align: center!important;
+}
+#test {
+        padding-right: 0px!important;
+        padding-left: 0px!important;  
+}
+
+.myTopMargin {
+        margin-top: 12px!important;
+}
+
+.myH1 {
+        width: 100%!important;
+        margin-bottom: 20px!important;
+        font-family: CorporateSBold, Arial, sans-serif!important;
+        letter-spacing: 0!important;
+        line-height: 1!important;
+        font-weight: 400!important;
+} 
+
+.myH2 {
+        width: 100%;
+        margin-bottom: 20px;
+        font-family: CorporateSBold,Arial,sans-serif!important;
+        color: #000!important;
+        letter-spacing: 0;
+        line-height: 1;
+        font-weight: 400!important;  
+        font-size: 30px!important;  
+}
+
+.myDisplay {
+        display: list-item!important;
+}
+
+.myBulletIndex {
+        text-align: left!important; 
+        
+
+}
+.myBulletSubindex {
+        text-align: left!important; 
+        padding-left: 50px!important;  
+         
+}
+
+.myBulletSubindex::before {
+        content:square;
+}
+/* li span {
+        position: relative!important;
+        left: 5px!important;
+
+} */
+
+.myForm {
+  margin-left: 0px!important; 
+  margin-right: 0px!important;
+  display: initial!important;
+  padding-bottom: 3px!important;
+
+}
+.notClickable {
+        pointer-events: none!important
+}
+
+.clickable {
+        pointer-events:auto!important
+} 
+
+.myBackGroundColor {
+        background-color: #f0f0f0!important;
+        border: none!important;
+}
+.myBottomMargin {
+        margin-bottom: 15px!important;
+}  
+.myTopMargin2 {
+        margin-top: 60px!important;
+}
+.myP {
+        bottom: 3px!important;
+        position: absolute!important;
+}  
+
+.mybg-black{
+        background-color: #429de3!important;
+        color:#429de3!important
+}
+
+.myColumn {
+        float: right!important;
+        width: 40%!important;
+        margin-left: 0px!important; 
+        margin-right: 0px!important;
+}
+ .row::after {
+                content: ""!important;
+                clear: both!important;
+                display: table!important;
+}
+.myButtonEdit::after{ 
+        content: none!important
+}
+.myKITSize {
+       width : 100%!important;
+       height :100%!important
+}
+.myBoxKIT {
+        width: 140px!important;
+        height :140px!important;
+}
+.myBoxHMC {
+        width: 360px!important;
+        height :360px!important; 
+        padding-right: 5px!important;
+}
+.myHMCSize {
+        width : 100%!important;
+        height :100%!important
+ }
+ .myTopMargin2 {
+        margin-top: 25px!important;
+}
+
+.mySignIn::after {
+        right: 0px!important
+}
