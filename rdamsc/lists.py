@@ -115,5 +115,24 @@ def subject_index():
     th = get_thesaurus()
     keywords_used = Scheme.get_used_keywords()
     tree = th.get_tree(keywords_used)
+    tree.insert(0, {
+        'name': 'HMC_Matter',
+        'url': url_for('search.subject', subject='HMC_Matter')}) 
+    tree.insert(0, {
+        'name': 'HMC_Information',
+        'url': url_for('search.subject', subject='HMC_Information')})
+    tree.insert(0, {
+        'name': 'HMC_Health',
+        'url': url_for('search.subject', subject='HMC_Health')})
+    tree.insert(0, {
+        'name': 'HMC_Energy',
+        'url': url_for('search.subject', subject='HMC_Energy')})
+    tree.insert(0, {
+        'name': 'HMC_EarthAndEnvironment',
+        'url': url_for('search.subject', subject='HMC_EarthAndEnvironment')})
+    tree.insert(0, {
+        'name': 'HMC_AST',
+        'url': url_for('search.subject', subject='HMC_AST')})
+
     return render_template(
         'contents.html', title='Index of subjects', tree=tree)
