@@ -1,61 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  {% block head %}
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">{% block head %}
   <title>{% block title %}{% endblock %}{% if self.title() %} – {% endif %}Metadata Standards Catalog</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hmc_all.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_main.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/msc.min.css') }}" />
-  <script src="https://kit.fontawesome.com/3a0c141ff6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/msc.css') }}" />
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_css.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/maxcdn.css') }}">
   {% endblock %}
 </head>
-<body>
-  <header class="navbar navbar-dark bg-primary navbar-expand-md">
-    <nav class="container">
-      <a class="navbar-brand" href="{{ url_for('hello') }}">Metadata Standards Catalog</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('search.scheme_search') }}">Search</a></li>
-          {% if current_user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.edit_profile') }}">My profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Sign out</a></li>
-          {% else %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Sign in</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <main class="container">
-  <h1>{% if self.title() %}{{ self.title() }}{% else %}Metadata Standards Catalog{% endif %}</h1>
-  {% with messages = get_flashed_messages(with_categories=True, category_filter=['error', 'message', 'success', 'warning']) %}
-  {% for category, message in messages %}
-  <div class="alert alert-{% if category == 'error' %}danger{% elif category == 'success' %}success{% elif category == 'warning' %}warning{% else %}info{% endif %} alert-dismissible fade show" role="alert">
-    <p class="mb-0">{{ message|safe }}</p>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+
+<body class="myZeroPadding">
+  <div class="wrapper">
+    <header>
+      <div id="main-head">
+        <div class="header-top">
+          <a href="https://msc.datamanager.kit.edu/" target="_self" class="hg-logo">
+            <img src="../static/images/helmholtz_logo_english.png" title="" alt=""></a>
+          <img class="print-logo"
+            src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz/Resources/Public/assets/Images/logo/logo_helmholtz_black.svg"
+            title="" alt="">
+
+          <div class="right ">
+            <!--div> <img class="testpic" src="../static/images/Logo_KIT.svg.png"> </div-->
+            <!--working version2-->
+            <!--div><a href="http://www.kit.edu/" target="_self"> <img class="hg-logo myLogo myTopMargin" src="../static/images/Picture1.png" > </a> </div-->
+            <!--working version-->
+
+            <div class=" row-md-1 notClickable">
+              <!--div class = " col-md-8 pull-right notClickable" >  
+        <a href="http://www.kit.edu/" target="_self"> <img class="hg-logo pull-right myTopMargin clickable" src="../static/images/Picture1.png" > </a> 
+        <div class = " col-md-6 col-md-4 pull-right notClickable"> 
+          
+        <a href="http://www.kit.edu/" target="_self"> <img class="hg-logo clickable" src="../static/images/Picture1.png" > </a> </div> </div-->
+
+              <!--div class = "myColumn col-md-2"-->
+              <div class="myBoxKIT pull-right">
+                <a href="http://www.kit.edu/" target="_self"><img
+                    class="hg-logo pull-right myTopMargin myKITSize clickable" src="../static/images/Picture1.png"></a>
+                <!--/div-->
+              </div>
+              <!--div class = "myColumn col-md-2 pull-right"-->
+              <div class="myBoxHMC pull-right">
+                <a href="https://helmholtz-metadaten.de/en" target="_self"><img
+                    class="hg-logo myTopMargin2 myHMCSize clickable" src="../static/images/HMC_logo.svg"></a>
+              </div>
+            </div>
+            <!--/div-->
+          </div>
+        </div>
+
+        <div class="wrap-meta-nav"> <img
+            src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz/Resources/Public/assets/Images/slider_4.svg"
+            width="74" height="32" alt="" />
+        </div>
+        <nav id="mainNav">
+          <ul id="bigScreenNav">
+            <li class="nav-list-item"> <a href="{{ url_for('hello') }}" class="nav-link">Home</a></li>
+            <li class="nav-list-item"><a href="{{ url_for('search.scheme_search') }}" class="nav-link">Search</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-list-item"><a href="{{ url_for('edit_profile') }}" class="nav-link">My profile</a>
+            </li>
+            <li class="nav-list-item"><a href="{{ url_for('logout') }}" class="nav-link">Sign out</a>
+            </li>
+            {% else %}
+            <li class="nav-list-item"><a href="{{ url_for('auth.login') }}" class="nav-link">Sign in</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+    </header>
   </div>
-  {% endfor %}
-  {% endwith %}
-  {% block main %}{% endblock %}
+  <main class="container myPadding">
+    <h1 id="h47865" class="myH1 hl-blue">{% if self.title() %}{{ self.title() }}{% else %}Metadata Standards Catalog{%
+      endif %}</h1>
+
+    {% with messages = get_flashed_messages(with_categories=True, category_filter=['error', 'message', 'success',
+    'warning']) %} {% for category, message in messages %}
+
+    <div
+      class="alert alert-{% if category == 'error' %}danger{% elif category == 'success' %}success{% elif category == 'warning' %}warning{% else %}info{% endif %} alert-dismissible"
+      role="alert">
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+      <p>{{ message|safe }}</p>
+    </div>
+    {% endfor %} {% endwith %} {% block main %}{% endblock %}
+
   </main>
-  <footer class="navbar navbar-expand-sm justify-content-center">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="https://github.com/rd-alliance/metadata-catalog-v2"><span class="fab fa-github"></span>&ensp;github</a></li>
-      <li class="nav-item"><a class="nav-link" href="https://twitter.com/resdatall"><span class="fab fa-twitter"></span>&ensp;twitter</a></li>
-      <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/researchdataalliance"><span class="fab fa-linkedin"></span>&ensp;linkedin</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://www.slideshare.net/ResearchDataAlliance"><span class="fab fa-slideshare"></span>&ensp;slideshare</a></li>
+
+  <footer class="myBlue ">
+    <nav class="navbar navbar-expand-sm justify-content-center">
+
+      <a class="navbar-brand myLeft mytext" href="http://www.scc.kit.edu/en/legals.php" title="Legals">Legals</a>
+      <ul class="nav navbar-nav">
+        <li><a href="https://www.github.com/rd-alliance/metadata-catalog-dev"><i
+              class="mySocialMediaIcon fa fa-github"></i></a></li>
+        <li><a href="https://twitter.com/resdatall"><i class="mySocialMediaIcon fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/profile/view?id=272003890&trk=nav_responsive_tab_profile"><i
+              class=" mySocialMediaIcon fa fa-linkedin"></i></a></li>
+        <!--li><a href="https://www.facebook.com/pages/Research-Data-Alliance/459608890798924"><i class="mySocialMediaIcon fa fa-facebook-square"></i></a></li-->
+        <li class="nav-item"><a href="http://www.slideshare.net/ResearchDataAlliance"><i
+              class="fa fa-slideshare mySocialMediaIcon"></i></a></li>
+      </ul>
+      <!--ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/rd-alliance/metadata-catalog-v2"><span class="fab fa-github mySocialMediaIcon"></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://twitter.com/resdatall"><span class="fab fa-twitter mySocialMediaIcon"></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/researchdataalliance"><span class="fab fa-linkedin"></span>&ensp;linkedin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://www.slideshare.net/ResearchDataAlliance"><span class="fab fa-slideshare"></span>&ensp;slideshare</a></li>
+                  </ul-->
+    </nav>
+    <ul class=" myFooterNav footer-bottom-nav "></ul>
+    <a href=https://rdamsc.bath.ac.uk target=self>
+      <li class="myFooterBottom">based on The RDA Metadata Standards Catalog</li>
+    </a>
     </ul>
   </footer>
+
+
+
+
+  <script src="{{url_for('static', filename = 'js/hmc_jquery-1.11.3.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_jquery.datetimepicker.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_parsley.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_Tabs.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_Form.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_main.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_jquery.autocomplete.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_suggest_controller.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/hmc_news_counter.js')}}"></script>
+
+  <!--script src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz/Resources/Public/assets/Vendor/Javascript/jquery-1.11.3.min.js?1555338295" type="text/javascript"></script>
+  <script src="https://www.helmholtz.de/typo3conf/ext/powermail/Resources/Public/JavaScripts/Libraries/jquery.datetimepicker.min.js?1522168280" type="text/javascript"></script>
+  <script src="https://www.helmholtz.de/typo3conf/ext/powermail/Resources/Public/JavaScripts/Libraries/parsley.min.js?1522168280" type="text/javascript"></script>
+  <script src="https://www.helmholtz.de/typo3conf/ext/powermail/Resources/Public/JavaScripts/Powermail/Tabs.min.js?1522168280" type="text/javascript"></script>
+              <script src="https://www.helmholtz.de/typo3conf/ext/powermail/Resources/Public/JavaScripts/Powermail/Form.min.js?1522168280" type="text/javascript"></script>
+              <script src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz/Resources/Public/dist/main.js?1602157139" type="text/javascript"></script>
+              <script src="https://www.helmholtz.de/typo3conf/ext/solr/Resources/Public/JavaScript/JQuery/jquery.autocomplete.min.js?1526554214" type="text/javascript"></script>
+              <script src="https://www.helmholtz.de/typo3conf/ext/solr/Resources/Public/JavaScript/suggest_controller.js?1526554214" type="text/javascript"></script>
+              <script src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz_news_extend/Resources/Public/JavaScript/news_counter.js?1522157695" type="text/javascript"></script-->
+  <script
+    src="https://www.helmholtz.de/typo3conf/ext/dreipc_helmholtz_news_extend/Resources/Public/JavaScript/news_counter.js?1522157695"
+    type="text/javascript"></script>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['requireConsent']);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function () {
+      var u = "//msc.datamanager.kit.edu/";
+      _paq.push(['setTrackerUrl', u + '']);
+      _paq.push(['setSiteId', 3]);
+      //var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      //g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'hmc_main.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
 </body>
+
 </html>

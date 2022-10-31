@@ -1,45 +1,73 @@
 {% extends "base.html" %}
 {% block main %}
-  <p>The RDA Metadata Standards Catalog is a collaborative, open directory of
-    metadata standards applicable to research data. It is offered to the
-    international academic community to help address infrastructure challenges.</p>
+<p class="bodytext text-justify">The RDA Metadata Standards Catalog is a collaborative, open directory of
+  metadata standards applicable to research data. It is offered to the
+  international academic community to help address infrastructure challenges. </p>
+<!--Energy-->
+<a href="{{ url_for('search.energy') }}" class="cat-box-link  bg-yellow" width="315" heigth="240"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Energie', ]);"><img
+    src="../static/images/yellow.png">
+  <!--img src="https://www.helmholtz.de/fileadmin/_processed_/6/4/csm_FB_Energie_DLR_Almeria_02_985x360_ac46c02a0f.jpg" width="315" height="240" alt="" border="0"-->
+  <div class="cat-box-title"><span>Energy</span></div> <span class="bg-element bg-yellow">&nbsp;</span>
+</a>
+<!--Earth&Environment-->
+<a href="{{ url_for('search.earthAndEnvironment') }}" class="cat-box-link"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Erde &amp; Umwelt', ]);"><img
+    src="../static/images/green.png" width="315" height="240" alt="" border="0">
+  <div class="cat-box-title"><span>Earth and Environment</span></div>
+  <span class="bg-element bg-green">&nbsp;</span>
+</a>
+<!--Health-->
+<a href="{{ url_for('search.health') }}" class="cat-box-link"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Gesundheit', ]);"><img
+    src="../static/images/red.png" width="315" height="240" alt="" border="0">
+  <div class="cat-box-title"><span>Health</span></div>
+  <span class="bg-element bg-red">&nbsp;</span>
+</a>
+<!--Aerospace & Transportation-->
+<a href="{{ url_for('search.aeronauticsSpaceAndTransport') }}" class="cat-box-link"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Luftfahrt, Raumfahrt und Verkehr', ]);"><img
+    src="../static/images/lightblue.png" width="315" height="240" alt="" border="0">
+  <div class="cat-box-title"><span>Aeronautics, Space and Transport</span></div>
+  <span class="bg-element bg-lightblue">&nbsp;</span>
+</a>
+<!--Matter-->
+<a href="{{ url_for('search.matter') }}" class="cat-box-link"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Materie', ]);"><img
+    src="../static/images/orange.png" width="315" height="240" alt="" border="0">
+  <div class="cat-box-title"><span>Matter</span></div>
+  <span class="bg-element bg-orange">&nbsp;</span>
+</a>
+<!--Key Technologies-->
+<a href="{{ url_for('search.hmcInformation') }}" class="cat-box-link"
+  onclick="javascript:_paq.push(['trackEvent', 'Forschung: Teaser', 'Klick auf Teaser', 'Schlüsseltechnologien', ]);"><img
+    src="../static/images/yellowgreen.png" width="315" height="240" alt="" border="0">
+  <div class="cat-box-title"><span>Information</span></div>
+  <span class="bg-element bg-yellowgreen">&nbsp;</span>
+</a>
+<div>
+  <h2 id="h37106 " class="myH2">Metadata standards, profiles and schemes</h2>
   <ul>
-    <li><a href="{{ url_for('scope') }}">Read more details about the scope of the Catalog</a></li>
-    <li><a href="{{ url_for('terms_of_use') }}">Read our terms of use</a></li>
-    <li><a href="{{ url_for('accessibility') }}">Read our accessibility statement</a></li>
-    <li><a href="{{ url_for('contributing') }}">Contribute to the Catalog</a></li>
-    <li><a href="https://app.swaggerhub.com/apis-docs/alex-ball/rda-metadata-standards-catalog/2.0.0">Explore our API</a></li>
+    <p class="bodytext"><a href="{{ url_for('list.record_index', series='scheme') }}">Browse by scheme name</a></p>
+    <p class="bodytext"><a href="{{ url_for('list.subject_index') }}">Browse by subject</a></p>
+    <p class="bodytext"><a href="{{ url_for('search.scheme_search') }}">Search</a></p>
   </ul>
-  <h2>Metadata standards, profiles and schemes</h2>
+  <h2 id="h37106 " class="myH2">Metadata-related tools</h2>
   <ul>
-    <li><a href="{{ url_for('list.record_index', series='scheme') }}">Browse by scheme name</a></li>
-    <li><a href="{{ url_for('list.subject_index') }}">Browse by subject</a></li>
-    <li><a href="{{ url_for('search.scheme_search') }}">Search</a></li>
+    <p class="bodytext"><a href="{{ url_for('list.record_index', series='tool') }}">Browse by tool name</a></p>
   </ul>
-  <h2>Metadata-related entities</h2>
+
+  <h2 id="h37106 " class="myH2">Make changes</h2>
   <ul>
-    <li><p><a href="{{ url_for('list.record_index', series='mapping') }}">Browse mappings between schemes</a></p></li>
-    <li><p><a href="{{ url_for('list.record_index', series='tool') }}">Browse metadata-related tools</a></p></li>
-    <li><p><a href="{{ url_for('list.record_index', series='organization') }}">Browse organizations</a></p>
-      <ul>
-        <li><a href="{{ url_for('list.record_index', series='organization', role='funders') }}">Browse funders</a></li>
-        <li><a href="{{ url_for('list.record_index', series='organization', role='maintainers') }}">Browse organizations that maintain schemes</a></li>
-        <li><a href="{{ url_for('list.record_index', series='organization', role='users') }}">Browse known users of schemes</a></li>
-        <li><a href="{{ url_for('list.record_index', series='organization', role='originators') }}">Browse organizations that have endorsed schemes</a></li>
-      </ul></li>
-    <li><p><a href="{{ url_for('list.record_index', series='endorsement') }}">Browse endorsements</a></p></li>
+    <p class="bodytext"><a href="{{ url_for('main.edit_record', table='m', number=0) }}">Add metadata scheme</a></p>
+    <p class="bodytext"><a href="{{ url_for('main.edit_record', table='c', number=0) }}">Add mapping between schemes</a>
+    </p>
+    <p class="bodytext"><a href="{{ url_for('main.edit_record', table='t', number=0) }}">Add metadata-related tool</a>
+    </p>
+    <p class="bodytext"><a href="{{ url_for('main.edit_record', table='g', number=0) }}">Add organization</a></p>
+    <p class="bodytext"><a href="{{ url_for('main.edit_record', table='e', number=0) }}">Add endorsement</a></p>
   </ul>
-  {% if current_user.is_authenticated %}
-  <h2>Make changes</h2>
-  <ul>
-    <li><a href="{{ url_for('main.edit_record', table='m', number=0) }}">Add metadata scheme</a></li>
-    <li><a href="{{ url_for('main.edit_record', table='c', number=0) }}">Add mapping between schemes</a></li>
-    <li><a href="{{ url_for('main.edit_record', table='t', number=0) }}">Add metadata-related tool</a></li>
-    <li><a href="{{ url_for('main.edit_record', table='g', number=0) }}">Add organization</a></li>
-    <li><a href="{{ url_for('main.edit_record', table='e', number=0) }}">Add endorsement</a></li>
-  </ul>
-  <ul>
-    <li><a href="{{ url_for('main.edit_vocabterm', vocab='datatype', number=0) }}">Add data type</a></li>
-  </ul>
-  {% endif %}
-{% endblock %}
+
+  <p class="bodytext myTopMargin2"><a href="{{ url_for('terms_of_use') }}">Read terms of use</a></p>
+
+  {% endblock %}
