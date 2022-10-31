@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Schema Record for msc:m{{ doc_id }}{% endblock %}
+{% block main %}
+
+    <tr>
+        <td><pre>{{ schema|prettyjson}}</pre></td>
+    </tr>
+    <div class = "d-flex align-items-center">
+ 
+   <div class="d-inline-block"> 
+    <h4>Schema Document URI:</h4>
+</div>
+<!--div class="d-inline-block"> 
+<a href="{{ url_for('terms_of_use') }}">{{ schema_url }}</a>
+</div-->
+
+ {% if sType|string == "JSON" %}
+<div class="d-inline-block"> 
+    <a href="{{ url_for('metastore.viewSchemaJSON', schemaID = schema['schemaId'], number = doc_id) }}">{{ schema_url }}</a>
+    </div>
+{% elif sType|string == "XML" %}
+<div class="d-inline-block"> 
+    <a href="{{ url_for('metastore.viewSchemaXML', schemaID = schema['schemaId'], number = doc_id) }}">{{ schema_url }}</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

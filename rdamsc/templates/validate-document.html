@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "macros-forms.html" import state,errors %}
+{% block title %}Validate Document{% endblock %}
+{% block main %}
+<body>
+    
+    <form action= "{{ url_for('metaStore.validateMetadataDocument',  idNo = doc_id)}}"  method="post" enctype="multipart/form-data">
+        <div class = "form-group container myPadding">
+            <label>
+                {{form.document.label}}
+            </label>
+            <div class="custom-file form-control ">
+            
+                <input type="file" class="custom-file-input" name="metadata_document" id="document">
+        </div>
+    </div>
+    <button type="submit" class="btn bg-blue"><span class = "btn-text"> Upload</span></button>
+    </form>
+</body>
+
+{% endblock %}

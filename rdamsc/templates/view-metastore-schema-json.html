@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Schema with schema ID : {{ schema_id }}{% endblock %}
+{% block main %}
+
+    <tr>
+        <td><pre>{{ schema|prettyjson }}</pre></td>
+    </tr>
+    
+
+{% endblock %}

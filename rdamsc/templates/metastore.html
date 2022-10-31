@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% from "macros-forms.html" import state,errors %}
+{% block title %}Metastore for msc:m{{ doc_id }} {% endblock %}
+{% block main %}
+<body>
+    <h1></h1>
+<form action = "{{ url_for('metastore.metaStore', table='m', number=doc_id) }}" method="post" enctype="multipart/form-data">
+    
+    <div class="form-group container">
+        <div class="form-group">
+            <label for="sid">{{form.schemeId.label}}</label>
+             {{form.schemeId( class = "form-control")}}
+           
+            <ul class="help-block">
+                <li>Optional field. If you choose not to add an id, the default id of the standard </li>
+              </ul>
+        </div>
+    </div>
+    {#<div class="form-group container">
+        <label for="mtype">{{#form.mimetype.label}}</label>
+        <select name="mtype" id="type" class="form-control"> 
+            <option disabled value="" selected hidden>Select Mimetype</option>
+            <option value="xml">application/xml</option>
+            <option value="json">application/json"</option>
+            <ul class="help-block">
+                <li>Choose 'XML' for XSD schemas</li>
+              </ul>
+        </select>
+    </div>#}
+
+    <div class="form-group container">
+        <label for="type">{{form.tp.label}}</label>
+        <select name="type" id="type" class="form-control"required>
+            <datalist>
+                <option disabled value="" selected hidden>Select type</option>
+            <option >XML</option>
+            <option >JSON</option>
+        </datalist>
+            <ul class="help-block">
+                <li>Choose 'XML' for XSD schemas</li>
+              </ul>
+        </select>
+    </div>
+    <div class="form-group container">
+        <label>{{form.sfile.label}}</label>
+        <div class="custom-file form-control ">
+            
+          <input type="file" class="custom-file-input" name="scheme_file" id="sfile">
+        
+          <!--label class="custom-file-label " for="sfile">Select file...</label-->
+        </div>
+        <!--div class = "container">
+            {{ errors(form.sfile) }}
+          </div-->
+      </div>
+
+      <button type="submit" class="btn bg-blue">Upload</a></button>
+</form>
+</body>
+{%endblock%}
