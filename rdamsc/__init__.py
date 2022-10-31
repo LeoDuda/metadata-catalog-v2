@@ -122,6 +122,9 @@ def create_app(test_config=None):
     from . import search
     app.register_blueprint(search.bp)
 
+    from . import metastore
+    app.register_blueprint(metastore.bp)
+
     from . import api1
     app.register_blueprint(api1.bp, url_prefix='/api')
 
