@@ -56,7 +56,7 @@
   <ul>
     <p class="bodytext"><a href="{{ url_for('list.record_index', series='tool') }}">Browse by tool name</a></p>
   </ul>
-
+  {% if current_user.is_authenticated %}
   <h2 id="h37106 " class="myH2">Make changes</h2>
   <ul>
     <p class="bodytext"><a href="{{ url_for('main.edit_record', table='m', number=0) }}">Add metadata scheme</a></p>
@@ -67,7 +67,7 @@
     <p class="bodytext"><a href="{{ url_for('main.edit_record', table='g', number=0) }}">Add organization</a></p>
     <p class="bodytext"><a href="{{ url_for('main.edit_record', table='e', number=0) }}">Add endorsement</a></p>
   </ul>
-
+  {% endif %}
   <p class="bodytext myTopMargin2"><a href="{{ url_for('terms_of_use') }}">Read terms of use</a></p>
 
   {% endblock %}
