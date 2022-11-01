@@ -405,8 +405,7 @@ class Thesaurus(object):
 
 
 def get_thesaurus():
-    if 'thesaurus' not in g:
-        g.thesaurus = Thesaurus()
+    g.thesaurus = Thesaurus()
 
     return g.thesaurus
 
