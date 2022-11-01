@@ -305,3 +305,29 @@ def group(role, number):
               'error')
     return render_template(
         'search-results.html', title=group.name, results=results)
+
+@bp.route("/energy", methods = ['GET','POST'])
+def energy():       
+    return subject("HMC_Energy")
+    
+
+@bp.route("/health", methods = ['GET','POST']) 
+def health(): 
+            return subject("HMC_Health")
+                 
+@bp.route("/earthAndEnvironment", methods = ['GET','POST']) 
+def earthAndEnvironment(isGui=None):
+            return subject('HMC_EarthAndEnvironment')
+
+@bp.route("/aeronauticsSpaceAndTransport", methods = ['GET','POST']) 
+def aeronauticsSpaceAndTransport(isGui=None):
+            return subject('HMC_AST')
+                 
+    
+@bp.route("/matter", methods = ['GET','POST']) 
+def matter(isGui=None):
+            return subject('HMC_Matter')
+                 
+@bp.route("/information", methods = ['GET','POST']) 
+def hmcInformation(isGui=None):
+            return subject('HMC_Information')
