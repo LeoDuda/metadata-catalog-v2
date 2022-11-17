@@ -199,7 +199,7 @@
 
           <dt>Metastore ID</dt>
           <dd><a
-              href="{{ url_for('convertIdtoUrl', schemaID = record['metastoreId'][0]['id'], number = record.doc_id )}}">{{
+              href="{{ url_for('metastore.convertIdtoUrl', schemaID = record['metastoreId'][0]['id'], number = record.doc_id )}}">{{
               record['metastoreId'][0]['id'] }}</a></dd>
           {% endif %}
 
