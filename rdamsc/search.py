@@ -228,14 +228,16 @@ def scheme_search():
     funder_list = (
         sorted(funder_set, key=lambda k: k.lower())
         if funder_set else list())
-    type_list = (
+    type_list = ()
+    
+    """type_list = (
         sorted(type_set, key=lambda k: k.lower())
         if type_set else list())
     subject_list.sort()
     return render_template(
         'search-form.html', form=form, titles=title_list,
         subjects=subject_list, ids=id_list, funders=funder_list,
-        dataTypes=type_list)
+        dataTypes=type_list)"""
 
 
 @bp.route('/subject/<subject>')
