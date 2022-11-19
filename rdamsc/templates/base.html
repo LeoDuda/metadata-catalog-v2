@@ -69,9 +69,9 @@
             <li class="nav-list-item"><a href="{{ url_for('search.scheme_search') }}" class="nav-link">Search</a>
             </li>
             {% if current_user.is_authenticated %}
-            <li class="nav-list-item"><a href="{{ url_for('edit_profile') }}" class="nav-link">My profile</a>
+            <li class="nav-list-item"><a href="{{ url_for('auth.edit_profile') }}" class="nav-link">My profile</a>
             </li>
-            <li class="nav-list-item"><a href="{{ url_for('logout') }}" class="nav-link">Sign out</a>
+            <li class="nav-list-item"><a href="{{ url_for('auth.logout') }}" class="nav-link">Sign out</a>
             </li>
             {% else %}
             <li class="nav-list-item"><a href="{{ url_for('auth.login') }}" class="nav-link">Sign in</a>
