@@ -29,7 +29,7 @@ class SchemeSearchForm(FlaskForm):
     keywords = FieldList(
         StringField('Subject area', validators=[validators.Optional()]),
         'Subject area', min_entries=1)
-    identifier = StringField('External identifier')
+    identifier = StringField('Identifier')
     funder = StringField('Funder')
     dataType = StringField('Data type')
 
