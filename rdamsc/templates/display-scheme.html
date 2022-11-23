@@ -101,16 +101,16 @@
       <ul class="col-sm-10 list-inline">
         {% for type in record['dataTypes'] %}
         {% if 'label' in type %}
-        <li><a class="btn btn-special" href="{{ url_for('dataType', dataType=toURLSlug(type['label'])) }}">{{
-            type['label'] }}</a></li>
+        <li><a class="btn btn-special" href="{{ url_for('search.dataType', number=type.doc_id) }}">{{ type['label']
+            }}</a></li>
         {% else %}
-        <li><a class="btn btn-special" href="{{ url_for('dataType', dataType=toURLSlug(type['url'])) }}">{{
+        <li><a class="btn btn-special" href="{{ url_for('search.dataType', dataType=toURLSlug(type['url'])) }}">{{
             abbrevURL(type['url']) }}</a></li>
         {% endif %}
         {% endfor %}
       </ul>
     </div>
-    <div class="tab-pane fade" id="dc" role="tabpanel">
+    <div class="tab-pane fade active in" id="dc" role="tabpanel">
       <div class="locations">
         <h2>Documentation</h2>
         <ul class="locations list-inline">
@@ -128,7 +128,7 @@
       </div>
     </div>
 
-    <div class="tab-pane fade active in" id="organizations" role="tabpanel">
+    <div class="tab-pane fade" id="organizations" role="tabpanel">
       <div class="organizations">
         <h2>Responsible organizations</h2>
         <ul>

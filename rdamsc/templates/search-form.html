@@ -12,73 +12,73 @@
       </p>
     </fieldset>
     -->
+  {{ form.hidden_tag() }}
+
   <h3>Search for schemes that match any of the following criteria:</h3>
   <div class="form-group myForm">
-    {{ form.title.label(class="col-sm-3 control-label myLeft mylabel") }} 
+    {{ form.title.label(class="col-sm-3 control-label myLeft mylabel") }}
+    <div class="col-sm-9">
+      {{ form.title(placeholder="Name of scheme", list="titles", class="form-control myBottomMargin") }}
+      <datalist id="titles">
+        {% for item in titles %}
+        <option>{{ item }}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+  </div>
+  <div class="form-group myForm">
+    {{ form.keywords.label(class="col-sm-3 control-label myLeft mylabel") }}
+    <datalist id="keyword-list">
+      {% for item in subjects %}
+      <option>{{ item }}</option>
+      {% endfor %}
+    </datalist>
+    <div class="col-sm-9 myZeroPaddingLR">
+      {% for f in form.keywords %}
+      <span class="{{ state(f) }}  col-sm-12 ">{{ f(list="keyword-list", class="form-control myBottomMargin ") }}</span>
+      {% endfor %}
+    </div>
+    {% for f in form.keywords %}
+    {{ errors(f) }}
+    {% endfor %}
+  </div>
+  <div class="form-group myForm">
+    {{ form.identifier.label(class="col-sm-3 control-label myLeft mylabel") }}
+    <div class="col-sm-9">
+      {{ form.identifier(placeholder="Identifier", list="identifiers", class="form-control myBottomMargin") }}
+      <datalist id="identifiers">
+        {% for item in ids %}
+        <option>{{ item }}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+  </div>
+  {% if funders %}
+  <div class="form-group myForm">
+    {{ form.funder.label(class="col-sm-3 control-label myLeft mylabel") }}
+    <div class="col-sm-9">
+      {{ form.funder(placeholder="Funder name", list="funders", class="form- control myBottomMargin") }}
+      <datalist id="funders">
+        {% for item in funders %}
+        <option>{{ item }}</option>
+        {% endfor %}
+      </datalist>
+      </label>
+    </div>
+    {% endif %}
+    <div class="form-group myForm">
+      {{ form.dataType.label(class="col-sm-3 control-label myLeft mylabel") }}
       <div class="col-sm-9">
-        {{ form.title(placeholder="Name of scheme", list="titles", class="form-control myBottomMargin") }}
-        <datalist id="titles">
-          {% for item in titles %}
+        {{ form.dataType(placeholder="Data type", list="dataTypes", class="form-control myBottomMargin") }}
+        <datalist id="dataTypes">
+          {% for item in dataTypes %}
           <option>{{ item }}</option>
           {% endfor %}
         </datalist>
       </div>
     </div>
     <div class="form-group myForm">
-      {{ form.keywords.label(class="col-sm-3 control-label myLeft mylabel") }}
-      <datalist id="keyword-list">
-        {% for item in subjects %}
-        <option>{{ item }}</option>
-        {% endfor %}
-      </datalist>
-      <div class="col-sm-9 myZeroPaddingLR">
-        {% for f in form.keywords %}
-          <span class="{{ state(f) }}  col-sm-12 ">{{ f(list="keyword-list", class="form-control myBottomMargin ") }}</span>
-          {% endfor %}
-        </div>
-        {% for f in form.keywords %}
-        {{ errors(f) }}
-        {% endfor %}
-      </div>
-      <div class="form-group myForm">
-        {{ form.identifier.label(class="col-sm-3 control-label myLeft mylabel") }}
-        <div class="col-sm-9">
-          {{ form.identifier(placeholder="Identifier", list="identifiers", class="form-control myBottomMargin") }}
-          <datalist id="identifiers">
-            {% for item in ids %}
-            <option>{{ item }}</option>
-            {% endfor %}
-          </datalist>
-        </div>
-      </div>
-      {% if funders %}
-      <div class="form-group myForm">
-        {{ form.funder.label(class="col-sm-3 control-label myLeft mylabel") }}
-        <div class="col-sm-9">
-          <datalist id="funders">
-            {% for item in funders %}
-            <option>{{ item }}</option>
-            {% endfor %}
-          </datalist>
-          </label>
-        </div>
-        {% endif %}
-        {% if dataTypes %}
-        <div class="form-group myForm">
-          {{ form.dataType.label(class="col-sm-3 control-label myLeft mylabel") }}
-          <div class="col-sm-9">
-            {{ form.dataType(placeholder="Data type", list="dataTypes", class="form-control myBottomMargin") }}
-            <datalist id="dataTypes">
-              {% for item in dataTypes %}
-              <option>{{ item }}</option>
-              {% endfor %}
-            </datalist>
-          </div>
-        </div>
-        {% endif %}
-        <div class="form-group myForm">
-          <button class="btn bg-blue powermail_field powermail_submit myLeft"><span
-              class="btn-text">Submit</span></button>
-        </div>
+      <button class="btn bg-blue powermail_field powermail_submit myLeft"><span class="btn-text">Submit</span></button>
+    </div>
 </form>
 {% endblock %}
