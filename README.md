@@ -19,7 +19,7 @@ locally as [openapi.yaml] and may be explored interactively on [SwaggerHub].
 [openapi.yaml]: openapi.yaml
 [SwaggerHub]: https://app.swaggerhub.com/apis-docs/alex-ball/rda-metadata-standards-catalog/2.0.0
 
-# Changes for the KIT-Version
+# Changes for the KIT version
 
 ### Database
 The database used in https://msc.datamanager.kit.edu/ was not compatible with the second version of the catalog from scratch. To make it compatible the provided tool from https://github.com/rd-alliance/metadata-catalog-data was used.
