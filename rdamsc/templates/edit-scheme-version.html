@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% from "macros-forms.html" import state, errors with context %}
-{% block title %}{% if index is none() %}Add new version{% else %}Edit {% if form.number.data %}version {{ form.number.data }}{% else %}unnumbered version{% endif %}{% endif %}{% endblock %}
+{% block title %}{% if index is none() %}Add new version{% else %}Edit {% if form.number.data %}version {{
+form.number.data }}{% else %}unnumbered version{% endif %}{% endif %}{% endblock %}
 {% block main %}
-  <form action="{{ url_for('main.edit_version', table='m', number=doc_id, index=index) }}" method="post"  accept-charset="utf-8" class="form-block">
-    {{ form.hidden_tag() }}
-    <fieldset>
+<form action="{{ url_for('main.edit_version', table='m', number=doc_id, index=index) }}" method="post"
+  accept-charset="utf-8" class="form-block">
+  {{ form.hidden_tag() }}
+  <fieldset>
     <div class="form-group{{ state(form.number) }}">
       {{ form.number.label(class="control-label") }}
       <div class="form-inline">
@@ -15,6 +17,8 @@
         <li>Do not preface the version number with "version" or "v".</li>
       </ul>
     </div>
+  </fieldset>
+  <fieldset>
     <div class="form-group">
       {{ form.title.label(class="control-label") }}
       {{ form.title(placeholder="Name of scheme", class="form-control") }}
@@ -30,64 +34,66 @@
           “Statistical Data and Metadata eXchange”.</li>
       </ul>
     </div>
-    <div class="form-group">
-      {{ form.note.label(class="control-label") }}
-      {{ form.note(class="form-control") }}
-      <ul class="form-text text-muted">
-        <li>If this version requires some explanation, give it here.</li>
-      </ul>
-    </div>
-    <div class="form-group{{ state(form.issued) }}">
-      {{ form.issued.label(class="control-label") }}
-      {{ form.issued(class="form-control", style="width:auto;") }}
-      {{ errors(form.issued) }}
-      <ul class="form-text text-muted">
-        <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
-        <li>In most cases, the only date you need to provide is "date published".</li>
-      </ul>
-    </div>
-    <div class="form-group{{ state(form.available) }}">
-      {{ form.available.label(class="control-label") }}
-      {{ form.available(class="form-control", style="width:auto;") }}
-      {{ errors(form.available) }}
-      <ul class="form-text text-muted">
-        <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
-        <li>If the version has not been released in its final version,
+  </fieldset>
+  <div class="form-group">
+    {{ form.note.label(class="control-label") }}
+    {{ form.note(class="form-control") }}
+    <ul class="form-text text-muted">
+      <li>If this version requires some explanation, give it here.</li>
+    </ul>
+  </div>
+  <div class="form-group{{ state(form.issued) }}">
+    {{ form.issued.label(class="control-label") }}
+    {{ form.issued(class="form-control", style="width:auto;") }}
+    {{ errors(form.issued) }}
+    <ul class="form-text text-muted">
+      <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
+      <li>In most cases, the only date you need to provide is "date published".</li>
+    </ul>
+  </div>
+  <div class="form-group{{ state(form.available) }}">
+    {{ form.available.label(class="control-label") }}
+    {{ form.available(class="form-control", style="width:auto;") }}
+    {{ errors(form.available) }}
+    <ul class="form-text text-muted">
+      <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
+      <li>If the version has not been released in its final version,
         please provide the date when the draft was first released. You do not need to
         remove this information when the final version is published.</li>
-      </ul>
-    </div>
-    <div class="form-group">
-      {{ form.valid.label(class="control-label") }}
-      <div class="form-inline">
-        <span class="{{ state(form.valid.start) }}">{{ form.valid.start.label(class="control-label") }}{{ form.valid.start(class="form-control") }}</span>
-        <span class="{{ state(form.valid.end) }}">{{ form.valid.end.label(class="control-label") }}
+    </ul>
+  </div>
+  <div class="form-group">
+    {{ form.valid.label(class="control-label") }}
+    <div class="form-inline">
+      <span class="{{ state(form.valid.start) }}">{{ form.valid.start.label(class="control-label") }}{{
+        form.valid.start(class="form-control") }}</span>
+      <span class="{{ state(form.valid.end) }}">{{ form.valid.end.label(class="control-label") }}
         {{ form.valid.end(class="form-control") }}</span>
-      </div>
-      {{ errors(form.valid.start) }}
-      {{ errors(form.valid.end) }}
-      <ul class="form-text text-muted">
-        <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
-        <li>Use "date considered current" only for cases where two or
-          more versions are considered current at the same time.</li>
-      </ul>
     </div>
-    </fieldset>
-    <fieldset>
+    {{ errors(form.valid.start) }}
+    {{ errors(form.valid.end) }}
+    <ul class="form-text text-muted">
+      <li>Give the date as yyyy, or yyyy-mm, or yyyy-mm-dd.</li>
+      <li>Use "date considered current" only for cases where two or
+        more versions are considered current at the same time.</li>
+    </ul>
+  </div>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.locations.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
         {% for f in form.locations %}
         <li>
           <div class="form-subgroup{{ state(f.url) }}">
-          {{ f.url.label(class="control-label") }}
-          {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
-          {{ errors(f.url) }}
+            {{ f.url.label(class="control-label") }}
+            {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
+            {{ errors(f.url) }}
           </div>
           <div class="form-subgroup{{ state(f['type']) }}">
-          {{ f['type'].label(class="control-label") }}
-          {{ f['type'](class="form-control", style="width:auto;") }}
-          {{ errors(f['type']) }}
+            {{ f['type'].label(class="control-label") }}
+            {{ f['type'](class="form-control", style="width:auto;") }}
+            {{ errors(f['type']) }}
           </div>
         </li>
         {% endfor %}
@@ -96,46 +102,46 @@
         <li>To give several locations, save after adding each one.</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.samples.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
-      {% for f in form.samples %}
+        {% for f in form.samples %}
         <li>
           <div class="form-subgroup{{ state(f.title) }}">
-          {{ f.title.label(class="control-label") }}
-          {{ f.title(class="form-control") }}
-          {{ errors(f.title) }}
+            {{ f.title.label(class="control-label") }}
+            {{ f.title(class="form-control") }}
+            {{ errors(f.title) }}
           </div>
           <div class="form-subgroup{{ state(f.url) }}">
-          {{ f.url.label(class="control-label") }}
-          {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
-          {{ errors(f.url) }}
+            {{ f.url.label(class="control-label") }}
+            {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
+            {{ errors(f.url) }}
           </div>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
       <ul class="form-text text-muted">
         <li>To give several samples, save after adding each one.</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.namespaces.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
         {% for f in form.namespaces %}
         <li>
           <div class="form-subgroup{{ state(f.prefix) }}">
-          {{ f.prefix.label(class="control-label") }}
-          {{ f.prefix(class="form-control", style="width:auto;") }}
-          {{ errors(f.prefix) }}
+            {{ f.prefix.label(class="control-label") }}
+            {{ f.prefix(class="form-control", style="width:auto;") }}
+            {{ errors(f.prefix) }}
           </div>
           <div class="form-subgroup{{ state(f.uri) }}">
-          {{ f.uri.label(class="control-label") }}
-          {{ f.uri(placeholder="URI e.g. https://www.../", class="form-control") }}
-          {{ errors(f.uri) }}
+            {{ f.uri.label(class="control-label") }}
+            {{ f.uri(placeholder="URI e.g. https://www.../", class="form-control") }}
+            {{ errors(f.uri) }}
           </div>
         </li>
         {% endfor %}
@@ -146,12 +152,12 @@
           with a slash (/) or hash (#).</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.identifiers.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
-      {% for f in form.identifiers %}
+        {% for f in form.identifiers %}
         <li>
           <div class="form-subgroup{{ state(f['id']) }}">
             {{ f['id'].label(class="control-label") }}
@@ -164,7 +170,7 @@
             {{ errors(f.scheme) }}
           </div>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
       <ul class="form-text text-muted">
         <li>Provide an identifier, if known, for this particular version of the
@@ -173,10 +179,11 @@
         <li>To give several identifiers, save after adding each one.</li>
       </ul>
     </div>
-    </fieldset>
-    <div class="form-group">
-      <button class="btn btn-success">Save changes</button>
-      <a href="{{ url_for('main.display', table='m', number=doc_id) }}" class="btn btn-outline-secondary">Cancel &amp; view record</a>
-    </div>
-  </form>
+  </fieldset>
+  <div class="form-group">
+    <button class="btn btn-success">Save changes</button>
+    <a href="{{ url_for('main.display', table='m', number=doc_id) }}" class="btn btn-outline-secondary">Cancel &amp;
+      view record</a>
+  </div>
+</form>
 {% endblock %}

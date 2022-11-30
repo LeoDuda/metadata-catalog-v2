@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% from "macros-forms.html" import state, errors with context %}
-{% block title %}{% if doc_id == 0 %}Add new endorsement{% else %}Edit endorsement msc:e{{ doc_id }}{% endif %}{% endblock %}
+{% block title %}{% if doc_id == 0 %}Add new endorsement{% else %}Edit endorsement msc:e{{ doc_id }}{% endif %}{%
+endblock %}
 {% block main %}
-  <form action="{{ url_for('main.edit_record', table='e', number=doc_id) }}" method="post"  accept-charset="utf-8" class="form-block">
-    {{ form.hidden_tag() }}
-    <fieldset>
+<form action="{{ url_for('main.edit_record', table='e', number=doc_id) }}" method="post" accept-charset="utf-8"
+  class="form-block">
+  {{ form.hidden_tag() }}
+  <fieldset>
     <div class="form-group">
       {{ form.title.label(class="control-label") }}
       {{ form.title(placeholder="Title of document", class="form-control") }}
@@ -12,6 +14,8 @@
         <li>Give the title in sentence case.</li>
       </ul>
     </div>
+  </fieldset>
+  <fieldset>
     <div class="form-group{{ state(form.description) }}">
       {{ form.description.label(class="control-label") }}
       {{ form.description(class="form-control") }}
@@ -22,12 +26,12 @@
           endorsed.</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.creators.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
-      {% for f in form.creators %}
+        {% for f in form.creators %}
         <li>
           <div class="form-subgroup{{ state(f.givenName) }}">
             {{ f.givenName.label(class="control-label") }}
@@ -45,7 +49,7 @@
             {{ errors(f.fullName) }}
           </div>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
       <ul class="form-text text-muted">
         <li>Give the individual or corporate authors that would appear in a
@@ -56,8 +60,8 @@
           and family.</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>Publication information</legend>
     <div class="form-group{{ state(form.publication) }}">
       {{ form.publication.label(class="control-label") }}
@@ -67,7 +71,8 @@
         <li>For a journal article, give the journal name, volume, issue, and
           page range/article number, e.g. <code>&lt;i&gt;IEEE MultiMedia&lt;/i&gt;, 13(2), 84-88</code>.</li>
         <li>For a report, give the location (if applicable) and publisher, e.g.
-          <code>London: British Library</code>.</li>
+          <code>London: British Library</code>.
+        </li>
       </ul>
     </div>
     <div class="form-group{{ state(form.issued) }}">
@@ -85,9 +90,10 @@
     <div class="form-group">
       {{ form.valid.label(class="control-label") }}
       <div class="form-inline">
-        <span class="{{ state(form.valid.start) }}">{{ form.valid.start.label(class="control-label") }}{{ form.valid.start(class="form-control") }}</span>
+        <span class="{{ state(form.valid.start) }}">{{ form.valid.start.label(class="control-label") }}{{
+          form.valid.start(class="form-control") }}</span>
         <span class="{{ state(form.valid.end) }}">{{ form.valid.end.label(class="control-label") }}
-        {{ form.valid.end(class="form-control") }}</span>
+          {{ form.valid.end(class="form-control") }}</span>
       </div>
       {{ errors(form.valid.start) }}
       {{ errors(form.valid.end) }}
@@ -97,29 +103,29 @@
           review and may be (or has been) withdrawn.</li>
       </ul>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.locations.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
-      {% for f in form.locations %}
+        {% for f in form.locations %}
         <li>
           <div class="form-subgroup{{ state(f.url) }}">
-          {{ f.url.label(class="control-label") }}
-          {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
-          {{ errors(f.url) }}
-          {{ errors(f['type']) }}
+            {{ f.url.label(class="control-label") }}
+            {{ f.url(placeholder="URL e.g. https://www...", class="form-control") }}
+            {{ errors(f.url) }}
+            {{ errors(f['type']) }}
           </div>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>{{ form.identifiers.label.text }}</legend>
     <div class="form-group">
       <ol class="form-list">
-      {% for f in form.identifiers %}
+        {% for f in form.identifiers %}
         <li>
           <div class="form-subgroup{{ state(f['id']) }}">
             {{ f['id'].label(class="control-label") }}
@@ -132,11 +138,11 @@
             {{ errors(f.scheme) }}
           </div>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
     </div>
-    </fieldset>
-    <fieldset>
+  </fieldset>
+  <fieldset>
     <legend>Relationships to other records</legend>
     <div class="form-group{{ state(form.endorsed_schemes) }}">
       {{ form.endorsed_schemes.label(class="control-label") }}
@@ -152,14 +158,15 @@
           organizations; do not record such endorsements here.</li>
       </ul>
     </div>
-    </fieldset>
-    <div class="form-group">
-      <button class="btn btn-success">Save changes</button>
-      {% if doc_id == 0 %}
-      <a href="{{ url_for('hello') }}" class="btn btn-outline-secondary">Cancel</a>
-      {% else %}
-      <a href="{{ url_for('main.display', table='e', number=doc_id) }}" class="btn btn-outline-secondary">Cancel &amp; view record</a>
-      {% endif %}
-    </div>
-  </form>
+  </fieldset>
+  <div class="form-group">
+    <button class="btn btn-success">Save changes</button>
+    {% if doc_id == 0 %}
+    <a href="{{ url_for('hello') }}" class="btn btn-outline-secondary">Cancel</a>
+    {% else %}
+    <a href="{{ url_for('main.display', table='e', number=doc_id) }}" class="btn btn-outline-secondary">Cancel &amp;
+      view record</a>
+    {% endif %}
+  </div>
+</form>
 {% endblock %}
